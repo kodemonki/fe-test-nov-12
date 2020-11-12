@@ -25,7 +25,7 @@ function Page1(props) {
   };
 
   return (
-    <div className="App">
+    <div className="App fade-in step-0" >
       <header className="container">
         <Formik
           initialValues={{ beenBefore: false, grade: "" }}
@@ -53,59 +53,65 @@ function Page1(props) {
           }}
         >
           <Form>
-            <span style={{ fontSize: "16px" }}>Grade&nbsp;</span>
-            <Field as="select" name="grade">
-              <option value={""}>Please select</option>
-              {props.data &&
-                props.data.grades.map((grade, index) => (
-                  <option key={"o" + index} value={grade}>
-                    {grade}
-                  </option>
-                ))}
-            </Field>
+            <div className=" ">
+              <span style={{ fontSize: "16px" }}>Grade&nbsp;</span>
+              <Field as="select" name="grade">
+                <option value={""}>Please select</option>
+                {props.data &&
+                  props.data.grades.map((grade, index) => (
+                    <option key={"o" + index} value={grade}>
+                      {grade}
+                    </option>
+                  ))}
+              </Field>
+            </div>
+            <br/>
+            <div className=" ">
+              <span style={{ fontSize: "16px" }}>{"Start Time"}&nbsp;</span>
+              <DatePicker
+                selected={startTime}
+                onChange={(date) => setStartTime(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+              />
+            </div>
+            <div className=" ">
+              <span style={{ fontSize: "16px" }}>
+                {"End Time"}&nbsp;&nbsp;&nbsp;
+              </span>
+              <DatePicker
+                selected={endTime}
+                onChange={(date) => setEndTime(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+              />
+            </div>
+            <div className=" ">
+              <label>
+                <Field type="checkbox" name="beenBefore" />
+                <span style={{ fontSize: "16px" }}>{"Been Before"}</span>
+              </label>
+            </div>
+            <div className=" ">
+              <DatePicker
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                inline
+              />
+            </div>
             <br />
-            <br />
-            <span style={{ fontSize: "16px" }}>{"Start Time"}&nbsp;</span>
-            <DatePicker
-              selected={startTime}
-              onChange={(date) => setStartTime(date)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-            />
-            <br />
-            <span style={{ fontSize: "16px" }}>
-              {"End Time"}&nbsp;&nbsp;&nbsp;
-            </span>
-            <DatePicker
-              selected={endTime}
-              onChange={(date) => setEndTime(date)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-            />
-            <br />
-            <br />
-            <label>
-              <Field type="checkbox" name="beenBefore" />
-              <span style={{ fontSize: "16px" }}>{"Been Before"}</span>
-            </label>
-            <br />
-            <br />
-            <DatePicker
-              selected={startDate}
-              onChange={onChange}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              inline
-            />
-            <br />
-            <button type="submit">Create Bookings</button>
+            <div className=" ">
+              <button type="submit">Create Bookings</button>
+            </div>
           </Form>
         </Formik>
       </header>

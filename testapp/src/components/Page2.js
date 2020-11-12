@@ -55,12 +55,13 @@ function Page2() {
                 <div
                   key={"r" + index}
                   style={{ border: "1px solid grey", padding: "10px" }}
+                  className={"fade-in step-" + index}
                 >
-                  <span style={{ fontSize: "14px" }}>{result.name}&nbsp;</span>
-                  <span style={{ fontSize: "14px" }}>{result.status}</span>
-                  <br />
                   <span style={{ fontSize: "14px" }}>{result.date}&nbsp;</span>
                   <span style={{ fontSize: "14px" }}>{result.time}</span>
+                  <br/>
+                  <span style={{ fontSize: "14px" }}>{result.name}&nbsp;</span>
+                  <span style={{ fontSize: "14px" }}>{result.status}</span>                 
                 </div>
               )}
             </React.Fragment>
