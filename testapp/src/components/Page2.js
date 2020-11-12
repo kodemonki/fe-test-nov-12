@@ -73,6 +73,9 @@ function Page2() {
     <div className="">
       <div className="Header">Accept bookings</div>
       <div className="container">
+        <p style={{ fontSize: "18px", color: "#2d88d9", fontWeight: "bold" }}>
+          Bookings to be confirmed
+        </p>
         {dummyResults &&
           dummyResults.map((result, index) => (
             <React.Fragment key={"k" + index}>
@@ -91,6 +94,7 @@ function Page2() {
                 <img
                   style={{ marginRight: "5px" }}
                   src="https://www.dummyimage.co.uk/50x50/cbcbcb/959595"
+                  alt=""
                 />
                 <div style={{ textAlign: "left" }}>
                   <span style={{ fontSize: "12px", display: "block" }}>
@@ -100,7 +104,7 @@ function Page2() {
                     style={{
                       fontSize: "12px",
                       display: "block",
-                      minWidth:'220px',
+                      minWidth: "220px",
                       color: result.statusColor,
                     }}
                   >

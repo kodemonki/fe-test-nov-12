@@ -25,12 +25,26 @@ function Page1(props) {
   };
 
   return (
-    <div className="fade-in step-0" >
+    <div className="fade-in step-0">
       <div className="Header">Make a booking</div>
       <header className="container">
+        <p style={{ fontSize: "18px", color: "#2d88d9", fontWeight: "bold" }}>
+          Book from scratch
+        </p>
         <Formik
           initialValues={{ beenBefore: false, grade: "" }}
+          validate={(values) => {
+            const errors = {};
+            if (values.grade === "") {
+              errors.grade = "Required";
+            }
+            return errors;
+          }}
           onSubmit={(values, actions) => {
+            let ed = endDate;
+            if (ed === null) {
+              ed = startDate;
+            }
             let newObj = {
               dateStart:
                 startDate.getDate() +
@@ -39,11 +53,11 @@ function Page1(props) {
                 ":" +
                 startDate.getFullYear(),
               dateEnd:
-                endDate.getDate() +
+                ed.getDate() +
                 ":" +
-                (endDate.getMonth() + 1) +
+                (ed.getMonth() + 1) +
                 ":" +
-                endDate.getFullYear(),
+                ed.getFullYear(),
               timeStart: startTime.getHours() + ":" + startTime.getMinutes(),
               timeEnd: endTime.getHours() + ":" + endTime.getMinutes(),
             };
@@ -53,67 +67,78 @@ function Page1(props) {
             props.setCurrentPage(2);
           }}
         >
-          <Form>
-            <div className=" ">
-              <span style={{ fontSize: "16px" }}>Grade&nbsp;</span>
-              <Field as="select" name="grade">
-                <option value={""}>Please select</option>
-                {props.data &&
-                  props.data.grades.map((grade, index) => (
-                    <option key={"o" + index} value={grade}>
-                      {grade}
-                    </option>
-                  ))}
-              </Field>
-            </div>
-            <br/>
-            <div className=" ">
-              <span style={{ fontSize: "16px" }}>{"Start Time"}&nbsp;</span>
-              <DatePicker
-                selected={startTime}
-                onChange={(date) => setStartTime(date)}
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
-              />
-            </div>
-            <div className=" ">
-              <span style={{ fontSize: "16px" }}>
-                {"End Time"}&nbsp;&nbsp;&nbsp;
-              </span>
-              <DatePicker
-                selected={endTime}
-                onChange={(date) => setEndTime(date)}
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
-              />
-            </div>
-            <div className=" ">
-              <label>
-                <Field type="checkbox" name="beenBefore" />
-                <span style={{ fontSize: "16px" }}>{"Been Before"}</span>
-              </label>
-            </div>
-            <div className=" ">
-              <DatePicker
-                selected={startDate}
-                onChange={onChange}
-                startDate={startDate}
-                endDate={endDate}
-                selectsRange
-                inline
-              />
-            </div>
-            <br />
-            <div className=" ">
-              <button type="submit">Create Bookings</button>
-            </div>
-          </Form>
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <Form>
+              <div className=" ">
+                <span style={{ fontSize: "16px" }}>Grade&nbsp;</span>
+                <Field as="select" name="grade">
+                  <option value={""}>Please select</option>
+                  {props.data &&
+                    props.data.grades.map((grade, index) => (
+                      <option key={"o" + index} value={grade}>
+                        {grade}
+                      </option>
+                    ))}
+                </Field>
+                {errors.grade && <span style={{ fontSize: "12px", color:"red", display:'block' }}>{errors.grade}</span>}
+              </div>
+              <br />
+              <div className=" ">
+                <span style={{ fontSize: "16px" }}>{"Start Time"}&nbsp;</span>
+                <DatePicker
+                  selected={startTime}
+                  onChange={(date) => setStartTime(date)}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                />
+              </div>
+              <div className=" ">
+                <span style={{ fontSize: "16px" }}>
+                  {"End Time"}&nbsp;&nbsp;&nbsp;
+                </span>
+                <DatePicker
+                  selected={endTime}
+                  onChange={(date) => setEndTime(date)}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                />
+              </div>
+              <div className=" ">
+                <label>
+                  <Field type="checkbox" name="beenBefore" />
+                  <span style={{ fontSize: "16px" }}>{"Been Before"}</span>
+                </label>
+              </div>
+              <div className=" ">
+                <DatePicker
+                  selected={startDate}
+                  onChange={onChange}
+                  startDate={startDate}
+                  endDate={endDate}
+                  selectsRange
+                  inline
+                />
+              </div>
+              <br />
+              <div className=" ">
+                <button type="submit">Create Bookings</button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </header>
     </div>

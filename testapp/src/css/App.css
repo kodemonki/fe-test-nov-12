@@ -12,13 +12,23 @@
   color: black;
 }
 
-.Header{
+.Header {
   background-color: #dfe6ed;
   font-weight: bold;
   padding: 20px 10px;
-  position:absolute;
-  width:100%;
+  position: absolute;
+  width: 100%;
   box-sizing: border-box;
+}
+
+button {
+  padding: 15px 20px;
+  color: white;
+  background-color: #2d88d9;
+  border-radius: 4px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 @keyframes fadeInOpacity {
@@ -37,7 +47,7 @@
   animation-timing-function: ease-in;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
-  display:block;
+  display: block;
 }
 
 .step-0 {
@@ -61,21 +71,21 @@
 }
 
 .step-5 {
-  animation-delay: 0.5s
+  animation-delay: 0.5s;
 }
 
 .step-6 {
-  animation-delay: 0.6s
+  animation-delay: 0.6s;
 }
 
 .step-7 {
-  animation-delay: 0.7s
+  animation-delay: 0.7s;
 }
 
 .step-8 {
-  animation-delay: 0.8s
+  animation-delay: 0.8s;
 }
 
 .step-9 {
-  animation-delay: 0.9s
+  animation-delay: 0.9s;
 }
