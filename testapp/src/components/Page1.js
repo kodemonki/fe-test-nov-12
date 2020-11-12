@@ -25,7 +25,8 @@ function Page1(props) {
   };
 
   return (
-    <div className="App fade-in step-0" >
+    <div className="fade-in step-0" >
+      <div className="Header">Make a booking</div>
       <header className="container">
         <Formik
           initialValues={{ beenBefore: false, grade: "" }}

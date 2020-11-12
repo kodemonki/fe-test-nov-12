@@ -12,6 +12,15 @@
   color: black;
 }
 
+.Header{
+  background-color: #dfe6ed;
+  font-weight: bold;
+  padding: 20px 10px;
+  position:absolute;
+  width:100%;
+  box-sizing: border-box;
+}
+
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
