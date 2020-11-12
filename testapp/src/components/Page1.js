@@ -77,7 +77,7 @@ function Page1(props) {
             isSubmitting,
           }) => (
             <Form>
-              <div className=" ">
+              <div>
                 <span style={{ fontSize: "16px" }}>Grade&nbsp;</span>
                 <Field as="select" name="grade">
                   <option value={""}>Please select</option>
@@ -91,7 +91,7 @@ function Page1(props) {
                 {errors.grade && <span style={{ fontSize: "12px", color:"red", display:'block' }}>{errors.grade}</span>}
               </div>
               <br />
-              <div className=" ">
+              <div>
                 <span style={{ fontSize: "16px" }}>{"Start Time"}&nbsp;</span>
                 <DatePicker
                   selected={startTime}
@@ -103,7 +103,7 @@ function Page1(props) {
                   dateFormat="h:mm aa"
                 />
               </div>
-              <div className=" ">
+              <div>
                 <span style={{ fontSize: "16px" }}>
                   {"End Time"}&nbsp;&nbsp;&nbsp;
                 </span>
@@ -117,13 +117,13 @@ function Page1(props) {
                   dateFormat="h:mm aa"
                 />
               </div>
-              <div className=" ">
+              <div>
                 <label>
                   <Field type="checkbox" name="beenBefore" />
                   <span style={{ fontSize: "16px" }}>{"Been Before"}</span>
                 </label>
               </div>
-              <div className=" ">
+              <div>
                 <DatePicker
                   selected={startDate}
                   onChange={onChange}
@@ -134,7 +134,7 @@ function Page1(props) {
                 />
               </div>
               <br />
-              <div className=" ">
+              <div>
                 <button type="submit">Create Bookings</button>
               </div>
             </Form>
