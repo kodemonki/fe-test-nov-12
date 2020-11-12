@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import { Formik, Field, Form } from "formik";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import allActions from "../actions";
 
 import "../css/App.css";
@@ -13,7 +13,7 @@ function Page1(props) {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
+  const [endDate, setEndDate] = useState(new Date());
 
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
@@ -26,19 +26,29 @@ function Page1(props) {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="container">
         <Formik
           initialValues={{ beenBefore: false, grade: "" }}
           onSubmit={(values, actions) => {
-            console.dir(values);
             let newObj = {
-              dateStart: startDate,
-              dateEnd: endDate,
+              dateStart:
+                startDate.getDate() +
+                ":" +
+                (startDate.getMonth() + 1) +
+                ":" +
+                startDate.getFullYear(),
+              dateEnd:
+                endDate.getDate() +
+                ":" +
+                (endDate.getMonth() + 1) +
+                ":" +
+                endDate.getFullYear(),
               timeStart: startTime.getHours() + ":" + startTime.getMinutes(),
               timeEnd: endTime.getHours() + ":" + endTime.getMinutes(),
             };
-            let mergedObj = { ...values, ...newObj };
-            dispatch(allActions.formDataActions.updateData(mergedObj));
+            dispatch(
+              allActions.formDataActions.updateData({ ...values, ...newObj })
+            );
             props.setCurrentPage(2);
           }}
         >

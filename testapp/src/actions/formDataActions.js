@@ -5,6 +5,8 @@ const updateData = (values) => {
   };
 };
 
-export default {
-  updateData,
-};
+const combined = {
+  updateData
+}
+
+export default combined;
